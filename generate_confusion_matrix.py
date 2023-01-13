@@ -122,7 +122,7 @@ def get_confusion_matrix(model_path: Path, data_path: Path, output_dir: Path):
     print("Generated confusion matrix!")
     cm_df = pd.DataFrame(matrix, columns=classes)
     cm_df.insert(0, "TARGETS", classes)
-    ax, plot = _plot_confusion_matrix(matrix, classes, normalize=True, text=False)
+    ax, plot = _plot_confusion_matrix(matrix, classes, normalize=True, text=True)
     print("Plotted confusion matrix!")
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
