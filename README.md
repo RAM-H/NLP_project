@@ -1,9 +1,9 @@
 # Extraction des classes des espèces à partir des flores camerounais.
-Pour réaliser les tâches demandés dans le projet , nous avos créer deux modèles NER un pour l'extrcation des nom espèces et l'autre est pour l'extraction des classes des descripteurs dans les paragraphes de description. les fichiers de données et de code sont regroupés dans les dossiers suivants:
+Pour réaliser les tâches demandées dans le projet, nous avons créer deux modèles NER : un pour l'extraction des noms des espèces et l'autre est pour l'extraction des classes de descripteurs dans les paragraphes de description. les fichiers de données et de code sont regroupés dans les dossiers suivants:
 ## Le dossier notebooks : 
-contient les fichiers de code en format ipynb.
+Contient les fichiers de code en format ipynb.
 ## get full sentences of species from the flore documents.ipynb : 
-contient le code de l'extraction des noms d'espèces à partir des flores et aussi l'extraction des titres des paragraphes aui contient les noms des espèces , la dataset `species_and_titles_dataframe.csv` est sous la forme suivante 
+Ce fichier contient le code de l'extraction des noms des espèces à partir des flores et aussi l'extraction des titres des paragraphes qui contiennent les noms des espèces , le dataset `species_and_titles_dataframe.csv` est sous la forme suivante :
 > <html>
 <body>
 <!--StartFragment-->
@@ -26,13 +26,13 @@ Erythrophleum ivorense | 1. Erythrophleum ivorense A. Chevalier
 </body>
 </html>
 
-**le dossier generetad data contient tous les fichiers csv que nous avons généré**
+**le dossier `generetad data` contient tous les fichiers csv que nous avons généré**
 ## Scrapping new species names from the plant list.ipynb
-Ce fichier contient le code du scrapping des nouveaux noms d'espèce à partir du site [_the plant list_ ](http://www.theplantlist.org) 
+Ce fichier contient le code du scrapping des nouveaux noms d'espèces à partir du site [_the plant list_ ](http://www.theplantlist.org) 
 on sauvegarde les noms des espèces dans le fichier `generetad data/species-THEPLANTLIST.txt` 
 ## Scrapping paragraphs from wikipedia using the plant list species.ipynb
-une étape que nous avons fait avant de commencer à coder le script de scrapping des phrases ou paragraphes qui decrivent les espèces , et de stocker les espèces non encore utiliser pour le scrapping dans un fichier `genereted data/species-THEPLANTLIST-not_scrapped.txt` car le script de scrapping est divisé sur plusieurs itérations car le nombre des noms des espèces est très grand (350639 espèces) et le scrapping en utilisant Wikipedia prend du temps ,donc nous avons essayer de sauvegarder les résultats du scrapping à chaque fois dans un ficher `../genereted data/rescued_data.csv` pour éviter la perte des données de scrapping . les fichiers de données générés en utilisant ce script sont `../genereted data/rescued_data.csv` et `../genereted data/rescued_data.csv2` et `../genereted data/scrapped_wikidata.csv`
-vous trouvez en dessous un exemple des données obtenue à partir du wikipedia en utilisant les noms des espèces extraites à partir des documents de flore .
+Une étape que nous avons fait avant de commencer à coder le script de scrapping des phrases ou paragraphes qui decrivent les espèces est de stocker les espèces pas encore utilisées pour le scrapping dans un fichier `genereted data/species-THEPLANTLIST-not_scrapped.txt` car le script de scrapping est divisé en plusieurs itérations car le nombre des noms des espèces est très grand (350639 espèces) et le scrapping en utilisant Wikipedia prend du temps ,donc nous avons essayer de sauvegarder les résultats du scrapping à chaque fois dans un ficher `../genereted data/rescued_data.csv` pour éviter la perte des données de scrapping . les fichiers de données générés en utilisant ce script sont `../genereted data/rescued_data.csv` et `../genereted data/rescued_data.csv2` et `../genereted data/scrapped_wikidata.csv`
+Vous trouvrez en dessous un exemple des données obtenue à partir du wikipedia en utilisant les noms des espèces extraites à partir des documents de flores .
 <html>
 <body>
 <!--StartFragment-->
@@ -56,18 +56,22 @@ Gilbertiodendron mayombense | Gilbertiodendron est un genre de plantes appar...
 </html>
 
  ## generate_train_data_merging_datasets.ipynb
-On merge le code des trois datasets obtenu : on prend le fichier wiki_data et les titres des paragraphes avec la dataset que nous avons obtenue à partir de plant list et wikipedia .
-les descriptions obtenue à partir du wikipedia contient du bruit (descriptions du genre, des lines manquantes ...)
-Après les traitements appliqués(TOKENIZATION..) sur les datasets , on garde que les lignes qui contient les espèces et la description.et on crée une nouvelle dataset sous la forme NER .
+On fusionne le code des trois datasets obtenu : on prend le fichier wiki_data et les titres des paragraphes avec la dataset que nous avons obtenue à partir de plant list et wikipedia .
+Les descriptions obtenue à partir du wikipedia contient du bruit (descriptions du genre, des lignes manquantes ...)
+Après les traitements appliqués(TOKENIZATION..) sur les datasets , on garde que les lignes qui contiennent les espèces et la description.et on crée un nouveau jeu de données sous la forme NER .
+
 ![image](https://user-images.githubusercontent.com/86720032/212359411-dcab1fbb-5cf5-48f2-aed2-e7f3965e359c.png)
-et on divise en train et en test , pour créer deux listes sous la forme `[Text,{'entities:[[start,end,label],[start,end,label],...]}]`
-on sauvegarde les deux fichiers en format pkl pour les réutiliser dans d'autres script : `../merged data/train_species_data_merged.pkl` , `../merged data/test_species_data_merged.pkl`
+
+On divise en Train et en Test , pour créer deux listes sous la forme:
+ [Text,{'entities:[[start,end,label],[start,end,label],...]}]
+On sauvegarde les deux fichiers en format pkl pour les réutiliser dans d'autres script : `../merged data/train_species_data_merged.pkl` , `../merged data/test_species_data_merged.pkl`
 ## Create_first_Ner_model_data_from_flora_wikipedia.ipynb
-Le fichier contient un premier teste du modèle NER sur une partie de notre dataset en utilisant `SPACY` , et aussi la génération des fichier e train.spacy et test.spacy , aussi un premier teste du modèle NER en utilisant le CPU (ce fichier est ajouté pour donner une idée sur les itérations qu'on a suivie pour créer les modèles finales) 
+Le fichier contient un premier teste du modèle NER sur une partie de notre dataset en utilisant `SPACY` , et aussi la génération des fichier  `train.spacy et test.spacy` , aussi un premier teste du modèle NER en utilisant le CPU (ce fichier est ajouté pour donner une idée sur les étapes que nous avons suivie pour créer les modèles finaux) 
 ## Ner_descriptors_organs.ipynb
-avant de commencer l'extractions des classes des desrcripteurs nous avons rassembler toutes les fonctions nécessaire dans un fichier `Utils_descriptors.py` qui contient la définition de fonction d'extraction des espèces,des descripteurs(mesures,forme,coleur) , en utilisant le script dans ce notebook nous avons générés les fichiers d'entrainements par exemple :`train_descriptors.spacy` et aussi d'autres fichiers comme `train_data_desc_mixte.pkl` ,`test_data_desc_mixte.pkl` ,Les fichiers de teste vont être transformés en format JSONL aussi pour les utilisés dans un autre code qui génère les matrices de confusion pour les modèles NER 
+Avant de commencer l'extraction des classes des desrcripteurs nous avons rassembler toutes les fonctions nécessaire dans un fichier `Utils_descriptors.py` qui contient la définition des fonctions de l'extraction des espèces et des descripteurs(mesures,forme,coleur) .en utilisant le script dans ce notebook nous avons généré les fichiers d'entrainements par exemple :`train_descriptors.spacy` et aussi d'autres fichiers comme `train_data_desc_mixte.pkl` ,`test_data_desc_mixte.pkl` ,Les fichiers de teste vont être transformés en format JSONL aussi pour les utilisés dans un autre code qui génère les matrices de confusion pour les modèles NER .
 ## Train_spacy_models_in collab_and_evaluate.ipynb
-Le fichier contient des lines de commandes pour faire l'entrainement des modèles NER en utilisant le GPU et en utilisant des fichiers train et validation à partir du drive , et aussi le chemain de l'output : 
+
+Le fichier contient des lignes de commandes pour faire l'entrainement des modèles NER en utilisant le GPU et en utilisant des fichiers train et validation à partir du drive , et aussi le chemin de l'output : 
 
     !python -m spacy train /content/drive/MyDrive/NER_project/ner_data/config.cfg --paths.train /content/drive/MyDrive/NER_project/ner_data/train_descriptors.spacy        --paths.dev /content/drive/MyDrive/NER_project/ner_data/train_descriptors.spacy --output /content/drive/MyDrive/NER_project/models/output_descriptors --gpu-id 0.
 
@@ -83,11 +87,11 @@ Le fichier contient aussi une commande pour la génération des matrices de conf
 <img src="https://user-images.githubusercontent.com/86720032/212375167-7986982c-ef2b-47a1-bf66-abbe5a5c1ab6.png" width=40% height=40%>
 
 
-Nous avons utiliser ce notebook pour générer trois modèles,un pour les espèces et un pour les classes des descripteurs ,finalement qui fait les deux tâches en même temps.les modèles sont télécharger du Google Drive manuellemnt et sont stockés dans le fichier Streamlitapp
+Nous avons utilisé ce notebook pour générer trois modèles: un pour les espèces et un pour les classes des descripteurs ,finalement un modèle qui fait les deux tâches en même temps.les modèles sont téléchargé du Google Drive manuellemnt et sont stockés dans le fichier Streamlitapp
 ## Streamliapp 
-le dossier streamlitapp contient les modèles NER et les fichiers nécessaires pour la création d'une image Docker.la création passe des étapes suivantes:
-* La création d'une interface streamlit dans fichiers streamlit.py
-* La création d'un environnement python ave `pipenv` et l'installation des packages nécessaire pour l'interface streamlit .et la genération des deux fichiers `pipfile`,`pipfile.lock`
+le dossier streamlitapp contient les modèles NER et les fichiers nécessaires pour la création d'une image Docker.la création respecte les étapes suivantes:
+* La création d'une interface Streamlit dans un le streamlit.py
+* La création d'un environnement python avec `pipenv` et l'installation des packages nécessaire pour l'interface streamlit .et la genération des deux fichiers `pipfile`,`pipfile.lock`
 * la génération du fichier requirements.txt
 * la création du Dockerfile.
 * le création du docker compose pour la création d'une image.
