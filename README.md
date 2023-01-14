@@ -104,7 +104,7 @@ L'image est ouverte dans `http://localhost:8081/`
 
 <img src="https://user-images.githubusercontent.com/86720032/212376964-3881df5a-731d-45b2-800a-2c0eda63ae10.png" width=50% height=50%>
 
-Les modèles osnt stockés dans le drive suivants : [Drive modèles NER](https://drive.google.com/drive/folders/1Pt-BzTnlnJWWfFOOXJhQJeEDdK5T7xBU?usp=share_link)
+Les modèles sont stockés dans le drive suivants : [Drive modèles NER](https://drive.google.com/drive/folders/1Pt-BzTnlnJWWfFOOXJhQJeEDdK5T7xBU?usp=share_link)
 
 ## Test de l'interface 
 
