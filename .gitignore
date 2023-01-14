@@ -1,1 +1,4 @@
-data/
+data/ 
+StreamlitApp/output_descriptors
+StreamlitApp/output_mixte
+StreamlitApp/output_species

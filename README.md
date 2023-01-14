@@ -88,7 +88,7 @@ Le fichier contient aussi une commande pour la génération des matrices de conf
 
 
 Nous avons utilisé ce notebook pour générer trois modèles: un pour les espèces et un pour les classes des descripteurs ,finalement un modèle qui fait les deux tâches en même temps.les modèles sont téléchargé du Google Drive manuellemnt et sont stockés dans le fichier Streamlitapp
-## Streamliapp 
+## Streamlitapp 
 le dossier streamlitapp contient les modèles NER et les fichiers nécessaires pour la création d'une image Docker.la création respecte les étapes suivantes:
 * La création d'une interface Streamlit dans un le streamlit.py
 * La création d'un environnement python avec `pipenv` et l'installation des packages nécessaire pour l'interface streamlit .et la genération des deux fichiers `pipfile`,`pipfile.lock`
@@ -103,6 +103,8 @@ le dossier streamlitapp contient les modèles NER et les fichiers nécessaires p
 L'image est ouverte dans `http://localhost:8081/`
 
 <img src="https://user-images.githubusercontent.com/86720032/212376964-3881df5a-731d-45b2-800a-2c0eda63ae10.png" width=50% height=50%>
+
+Les modèles sont stockés dans le drive suivants : [Drive modèles NER](https://drive.google.com/drive/folders/1Pt-BzTnlnJWWfFOOXJhQJeEDdK5T7xBU?usp=share_link)
 
 ## Test de l'interface 
 
